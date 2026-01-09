@@ -15,18 +15,9 @@ namespace OOP_Game_Shrek
         private static Type _requestedScene;   // 전환이 요청된 Scene
         private static TimeManager _timeManager = new TimeManager();
 
-        // baseScene을 상속받는 Scene 목록
-        public enum SceneType
-        {
-            STitle,
-            SGame
-        }
 
-        static HashSet<SceneType> _sceneList = new HashSet<SceneType>();
-
-
-
-
+        //Scene을 담아야하는데, 검색도 빨라야해서 key를 Type으로.
+        static Dictionary<Type, BaseScene> _sceneList = new Dictionary<Type, BaseScene>();
 
 
         /// <summary>
@@ -38,7 +29,7 @@ namespace OOP_Game_Shrek
             InputManager.Poll();
 
             int n = _timeManager.GetUpdateTimes();
-            for(int i = 0; i< n;i++)
+            for (int i = 0; i < n; i++)
             {
                 // OM.Update();
             }
@@ -46,13 +37,17 @@ namespace OOP_Game_Shrek
             // OM.Render();
 
             // Scene 전환해야하면 Scene 전환
-            if(_requestedScene != null)
+            if (_requestedScene != null)
             {
-                // 전환
                 _previousScene = _currentScene;
-                //없으면 새로만들고
-                _currentScene = (BaseScene)Activator.CreateInstance(_requestedScene);
-                // 있으면 꺼내쓰면되지용
+
+                //있으면 꺼내쓰고
+                if (!_sceneList.TryGetValue(_requestedScene, out _currentScene))
+                {
+                    //없으면 새로 만들기
+                    _sceneList[_requestedScene] = (BaseScene)Activator.CreateInstance(_requestedScene);
+                    _currentScene = _sceneList[_requestedScene];
+                }
 
                 // null로다시 바꿔주고
                 _requestedScene = null;
@@ -70,7 +65,7 @@ namespace OOP_Game_Shrek
             _quitRequested = true;
         }
 
-   
+
         public static void ChangeScene<T>() where T : BaseScene
         {
             _requestedScene = typeof(T);
@@ -78,7 +73,7 @@ namespace OOP_Game_Shrek
 
         public static void ChangePreviousScene()
         {
-            //
+            _requestedScene = _previousScene.GetType();
         }
 
     }
