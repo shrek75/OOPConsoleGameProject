@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Game_Shrek.Utils
 {
-    internal interface ICollision
+    internal interface IDeletable
     {
     }
 }

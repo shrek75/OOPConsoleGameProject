@@ -13,7 +13,7 @@ namespace OOP_Game_Shrek
         static ConsoleKeyInfo _key;
         static Queue<ConsoleKeyInfo> _keys = new Queue<ConsoleKeyInfo>();
 
-        public static void Test()
+        public static void Poll()
         {
             //if (Console.KeyAvailable == false) return;
             while(Console.KeyAvailable)
@@ -22,5 +22,10 @@ namespace OOP_Game_Shrek
                 _keys.Enqueue(_key);
             }
         }
+        public static void Clear()
+        {
+            _keys.Clear();
+        }
+
     }
 }

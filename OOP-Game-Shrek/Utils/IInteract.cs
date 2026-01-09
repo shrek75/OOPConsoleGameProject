@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP_Game_Shrek
+namespace OOP_Game_Shrek.Utils
 {
-    internal class IInteract
+    internal interface IInteract
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Game_Shrek
 {
-    internal class BaseScene
+    internal abstract class BaseScene
     {
     }
 }

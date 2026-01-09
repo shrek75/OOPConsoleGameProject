@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP_Game_Shrek.Utils
+namespace OOP_Game_Shrek.Scenes
 {
-    internal interface ICollision
+    internal class SGame : BaseScene
     {
     }
 }
