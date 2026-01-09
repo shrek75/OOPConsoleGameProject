@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOP_Game_Shrek.Scenes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +12,21 @@ namespace OOP_Game_Shrek
         private static bool _quitRequested = false; // 게임종료 요청 플래그
         private static BaseScene _currentScene;     // 현재 실행중인 Scene
         private static BaseScene _previousScene;    // 이전에 실행되었던 Scene
-        private static BaseScene _requestedScene;   // 전환이 요청된 Scene
+        private static Type _requestedScene;   // 전환이 요청된 Scene
         private static TimeManager _timeManager = new TimeManager();
 
         // baseScene을 상속받는 Scene 목록
-        public enum SceneList
+        public enum SceneType
         {
-            STitle
+            STitle,
+            SGame
         }
 
-       
+        static HashSet<SceneType> _sceneList = new HashSet<SceneType>();
+
+
+
+
 
 
         /// <summary>
@@ -43,6 +49,13 @@ namespace OOP_Game_Shrek
             if(_requestedScene != null)
             {
                 // 전환
+                _previousScene = _currentScene;
+                //없으면 새로만들고
+                _currentScene = (BaseScene)Activator.CreateInstance(_requestedScene);
+                // 있으면 꺼내쓰면되지용
+
+                // null로다시 바꿔주고
+                _requestedScene = null;
             }
 
             if (_quitRequested) return false;
@@ -57,15 +70,15 @@ namespace OOP_Game_Shrek
             _quitRequested = true;
         }
 
-
-        public static void ChangeScene(SceneList scene)
+   
+        public static void ChangeScene<T>() where T : BaseScene
         {
-            // scene 에 따라 _requestedScene 설정
+            _requestedScene = typeof(T);
         }
 
         public static void ChangePreviousScene()
         {
-            // _previousScene 으로 전환 요청
+            //
         }
 
     }
