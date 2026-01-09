@@ -37,8 +37,39 @@ namespace OOP_Game_Shrek
 
         // 삭제랑
 
-        // Update랑
 
+        // Update랑
         // 충돌처리등등...
+
+
+        public static void Update()
+        {
+            // 이미 충돌처리한 collisionObject의 인덱스를 세기위해
+            int target = 0;
+            for(int i = 0; i < _allObjList.Count; i++)
+            {
+                // 오브젝트 Update
+                _allObjList[i].Update();
+
+                // Update한 오브젝트가 충돌처리해야할 Object라면
+                if (_allObjList[i] is ICollision coll)
+                {
+                    // 순회하면서 충돌이 있는지 확인
+                    for(int j = target + 1; j< _collisionObjList.Count; j++)
+                    {
+                        //이거 2개 충돌했는지 확인후
+                        _collisionObjList[target];
+                        _collisionObjList[j];
+                        //이런식으로 양쪽에 충돌했다고 알려주기.
+                        _collisionObjList[target].OnCollision((BaseObject)_collisionObjList[j]);
+                        _collisionObjList[j].OnCollision((BaseObject)_collisionObjList[target]);
+
+                        //근데 이게 충돌했는지 확인하는 과정에 객체의 크기 개념이 있어야 하는구나..
+                        // 좌표는 점이니까..
+                    }
+                    target++;
+                }
+            }
+        }
     }
 }

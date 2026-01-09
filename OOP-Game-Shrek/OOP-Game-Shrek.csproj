@@ -46,9 +46,12 @@
     <Compile Include="Objects\BaseObject.cs" />
     <Compile Include="Scenes\BaseScene.cs" />
     <Compile Include="Managers\ConsoleManager.cs" />
+    <Compile Include="Scenes\SGame.cs" />
+    <Compile Include="Scenes\STitle.cs" />
     <Compile Include="Utils\ICollision.cs" />
-    <Compile Include="Utils\IInteract.cs" />
+    <Compile Include="Utils\IDeletable.cs" />
     <Compile Include="Managers\InputManager.cs" />
+    <Compile Include="Utils\IInteract.cs" />
     <Compile Include="Utils\Inventory.cs" />
     <Compile Include="Utils\Log.cs" />
     <Compile Include="Managers\ObjectManager.cs" />
