@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOP_Game_Shrek.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,10 @@ namespace OOP_Game_Shrek.Scenes
         // 속도도 빨라야하니깐 baseobject list도 두고 인터페이스별로 list도 전부 둬.
         // 생성 삭제할때만 잘해주면 훨씬 빠르겟네.
 
-
+        public STitle()
+        {
+            ObjectManager.AddObject(new OTestObj());
+        }
         
 
 
