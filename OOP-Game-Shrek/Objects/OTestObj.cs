@@ -14,8 +14,7 @@ namespace OOP_Game_Shrek.Objects
         }
         public override void Render()
         {
-            Console.WriteLine("OTestObj 하이 ^_^");
-            Console.WriteLine($"{this.GetHashCode()}");
+            ConsoleManager.Draw(1, 1, 'A');
         }
 
     }

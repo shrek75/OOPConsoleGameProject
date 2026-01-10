@@ -97,7 +97,7 @@ namespace OOP_Game_Shrek
         {
             foreach(BaseObject obj in _allObjList)
                 obj.Render();
-            //Flip(); 하면되고.
+            ConsoleManager.Flip();
         }
     }
 }

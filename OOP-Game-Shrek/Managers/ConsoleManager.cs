@@ -24,13 +24,15 @@ namespace OOP_Game_Shrek
         //버퍼의 내용 출력
         public static void Flip()
         {
+            Console.SetCursorPosition(0, 0);
             for(int i=0; i < Y; i++)
                 for(int j=0; j < X; j++)
                     Console.Write(_buffer[i, j]);
+            BufferClear();
         }
 
         //버퍼 클리어
-        public static void BufferClear()
+        private static void BufferClear()
         {
             for (int i = 0; i < Y; i++)
                 for (int j = 0; j < X; j++)
