@@ -12,6 +12,8 @@ namespace OOP_Game_Shrek
         static List<BaseObject> _allObjList = new List<BaseObject>();        // 관리하는 전체 오브젝트 리스트
         static List<ICollision> _collisionObjList = new List<ICollision>();  // 전체 오브젝트중 ICollision 오브젝트만
         static Queue<BaseObject> _objAddRequestList = new Queue<BaseObject>(); // 오브젝트 생성 요청리스트 
+        static Queue<BaseObject> _objDelRequestList = new Queue<BaseObject>(); // 오브젝트 삭제 요청리스트 
+
 
         // 생성한 오브젝트를 ObjectManager에게 등록 요청
         public static void AddObject(BaseObject obj)
@@ -31,11 +33,29 @@ namespace OOP_Game_Shrek
                 // 오브젝트의 인터페이스에 따라 추가 등록
                 if (obj is ICollision i)
                     _collisionObjList.Add(i);
-            }
-            
+            }            
         }
 
-        // 삭제랑
+        // 오브젝트를 ObjectManager에게 삭제 요청
+        public static void DeleteObject(BaseObject obj)
+        {
+            _objDelRequestList.Enqueue(obj);
+        }
+
+        // 등록요청된 오브젝트들을 삭제해준다
+        private static void ProcessObjDelRequest()
+        {
+            while (_objDelRequestList.Count != 0)
+            {
+                BaseObject obj = _objDelRequestList.Dequeue();
+
+                _allObjList.Remove(obj);
+
+                // 오브젝트의 인터페이스에 따라 다른리스트도 삭제해주기
+                if (obj is ICollision i)
+                    _collisionObjList.Remove(i);
+            }
+        }
 
 
 
@@ -69,10 +89,8 @@ namespace OOP_Game_Shrek
                 }
             }
 
-            //add요청
             ProcessObjAddRequest();
-
-            //delete요청
+            ProcessObjDelRequest();
         }
 
         public static void Render()

@@ -15,7 +15,6 @@ namespace OOP_Game_Shrek
 
         public static void Poll()
         {
-            //if (Console.KeyAvailable == false) return;
             while(Console.KeyAvailable)
             {
                 _key = Console.ReadKey();
