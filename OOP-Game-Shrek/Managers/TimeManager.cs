@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Game_Shrek
 {
-    internal class TimeManager
+    internal static class TimeManager
     {
         private const int GAME_TPS = 30; // 게임의 초당 Update 호출 주기
         private const long AVERAGE_TICKS = 10000000 / GAME_TPS; //게임 로직 고정 틱
@@ -18,22 +18,30 @@ namespace OOP_Game_Shrek
         //private long _FrameCount = 0; // 렌더링된 전체 프레임 수
         //private long _lastFrameCount = 0; // 1초전 프레임 수
 
-        int _updateTimes = 0; //한 루프에서 Update를 너무 많이 호출하는 걸 방지하기 위한 변수
+        static int _updateTimes = 0; //한 루프에서 Update를 너무 많이 호출하는 걸 방지하기 위한 변수
 
-        long _lastUpdateTick = 0; // 마지막 Update 시점의 tick
-        long _deltaTick = 0;     // 마지막 Update 이후 남은 tick
+        static long _lastUpdateTick = 0; // 마지막 Update 시점의 tick
+        static long _deltaTick = 0;     // 마지막 Update 이후 남은 tick
+        public static long DeltaTick { get { return _deltaTick; } }
 
-        Stopwatch _timePerFrame; //tick측정을 위한 Stopwatch
-        public TimeManager()
+        static Stopwatch _timePerFrame; //tick측정을 위한 Stopwatch
+        static TimeManager()
         {
             _timePerFrame = Stopwatch.StartNew();
         }
 
+        public static void Reset()
+        {
+            _updateTimes = 0;
+            _lastUpdateTick = 0;
+            _deltaTick = 0;
+            _timePerFrame = Stopwatch.StartNew();
+        }
 
         /// <summary>
         /// Update를 할 타이밍인지 반환합니다. 내부적으로 deltaTick을 계산합니다.
         /// </summary>
-        public bool IsUpdateTime()
+        public static bool IsUpdateTime()
         {
             ReportDeltaTick();
 
@@ -58,7 +66,7 @@ namespace OOP_Game_Shrek
             return true;
         }
 
-        public long ReportDeltaTick()
+        public static long ReportDeltaTick()
         {
             // deltaTick 계산
             _deltaTick = _timePerFrame.ElapsedTicks - _lastUpdateTick;

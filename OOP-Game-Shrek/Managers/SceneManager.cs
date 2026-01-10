@@ -13,7 +13,6 @@ namespace OOP_Game_Shrek
         private static BaseScene _currentScene;     // 현재 실행중인 Scene
         private static BaseScene _previousScene;    // 이전에 실행되었던 Scene
         private static Type _requestedScene;   // 전환이 요청된 Scene
-        private static TimeManager _timeManager;
 
 
         //Scene을 담아야하는데, 검색도 빨라야해서 key를 Type으로.
@@ -23,8 +22,6 @@ namespace OOP_Game_Shrek
         {
             // default Scene 설정
             _requestedScene = typeof(SFirstScene);
-
-            _timeManager = new TimeManager();
         }
 
 
@@ -40,10 +37,9 @@ namespace OOP_Game_Shrek
 
             InputManager.Poll();
 
-            while(_timeManager.IsUpdateTime())
+            while(TimeManager.IsUpdateTime())
                 ObjectManager.Update();
 
-            _timeManager.ReportDeltaTick();
             ObjectManager.Render();
 
 
@@ -70,8 +66,8 @@ namespace OOP_Game_Shrek
                     _currentScene = _sceneList[nextScene];
                 }
 
-                //Scene전환이니 새로운 TimeManager 생성.
-                _timeManager = new TimeManager();
+                //TimeManager Reset
+                TimeManager.Reset();
             }
         }
 

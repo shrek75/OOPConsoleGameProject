@@ -11,14 +11,15 @@ namespace OOP_Game_Shrek
         //어떻게 만들지...
 
         static ConsoleKeyInfo _key;
-        static Queue<ConsoleKeyInfo> _keys = new Queue<ConsoleKeyInfo>();
+        static HashSet<ConsoleKeyInfo> _keys = new HashSet<ConsoleKeyInfo>();
+        public static IReadOnlyCollection<ConsoleKeyInfo> Keys { get { return _keys; } }
 
         public static void Poll()
         {
             while(Console.KeyAvailable)
             {
                 _key = Console.ReadKey();
-                _keys.Enqueue(_key);
+                _keys.Add(_key);
             }
         }
         public static void Clear()
