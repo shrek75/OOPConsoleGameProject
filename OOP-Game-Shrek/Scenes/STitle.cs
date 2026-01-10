@@ -27,9 +27,11 @@ namespace OOP_Game_Shrek.Scenes
 
         public STitle()
         {
-            ObjectManager.AddObject(new OTestObj());
+            ObjectManager.AddObject(new OTestObj(new Pos(3,0)));
+            ObjectManager.AddObject(new OTestObj(new Pos(3,3)));
+
         }
-        
+
 
 
     }

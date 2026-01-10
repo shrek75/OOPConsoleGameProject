@@ -8,9 +8,9 @@ namespace OOP_Game_Shrek.Objects
 {
     internal class OTestObj : BaseObject
     {
-        public OTestObj()
+        public OTestObj(Pos pos)
         {
-            _pos = new Pos { X = 3, Y = 0};
+            _pos = pos;
             _sprite = new Utils.Sprite(
                 new char[,] {
                     { '#', '#', '#', '#' },
@@ -21,7 +21,8 @@ namespace OOP_Game_Shrek.Objects
 
         public override void Update()
         {
-            
+            _pos._x += 0.1;
+
         }
         public override void Render()
         {
