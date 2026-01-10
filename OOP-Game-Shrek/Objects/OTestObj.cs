@@ -8,13 +8,24 @@ namespace OOP_Game_Shrek.Objects
 {
     internal class OTestObj : BaseObject
     {
+        public OTestObj()
+        {
+            _pos = new Pos { X = 3, Y = 0};
+            _sprite = new Utils.Sprite(
+                new char[,] {
+                    { '#', '#', '#', '#' },
+                    { '#', ' ', ' ', '#' },
+                    { '#', ' ', ' ', '#' },
+                    { '#', '#', '#', '#' }});
+        }
+
         public override void Update()
         {
             
         }
         public override void Render()
         {
-            ConsoleManager.Draw(1, 1, 'A');
+            _sprite.Render(_pos);
         }
 
     }
