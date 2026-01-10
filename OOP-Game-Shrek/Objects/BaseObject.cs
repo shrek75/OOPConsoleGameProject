@@ -9,13 +9,15 @@ namespace OOP_Game_Shrek
     internal abstract class BaseObject
     {
         //기존위치
-        Pos _prevPos;
+        Pos _pos;
 
-        //Pos _pos;
-        //public Pos Pos
+
+        //public Pos GetRenderPos()
         //{
-        //    get { return _prevPos + (_dir * _speed) * 델타타임; }
+        //    return _pos + (_dir * _speed) * 델타타임;
         //}
+        //근데 이렇게하면 Update루프돌리고 Render왔을때 델타타임이 또 적용되는데 구조가..
+        
 
         //방향
         Pos _dir;

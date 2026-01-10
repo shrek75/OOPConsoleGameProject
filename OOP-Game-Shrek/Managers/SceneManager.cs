@@ -26,16 +26,17 @@ namespace OOP_Game_Shrek
         /// </summary>
         public static bool Run()
         {
+            if (_quitRequested) return false;
+
             InputManager.Poll();
 
-            int n = _timeManager.GetUpdateTimes();
-            for (int i = 0; i < n; i++)
-            {
-                // OM.Update();
-            }
+            while(_timeManager.IsUpdateTime())
+                ObjectManager.Update();
 
-            // OM.Render();
+            _timeManager.ReportDeltaTick();
+            //ObjectManager.Render();
 
+            #region <Scene 전환 처리>
             // Scene 전환해야하면 Scene 전환
             if (_requestedScene != null)
             {
@@ -52,8 +53,8 @@ namespace OOP_Game_Shrek
                 // null로다시 바꿔주고
                 _requestedScene = null;
             }
+            #endregion
 
-            if (_quitRequested) return false;
             return true;
         }
 

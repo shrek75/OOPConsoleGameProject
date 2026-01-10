@@ -58,8 +58,8 @@ namespace OOP_Game_Shrek
                     for(int j = target + 1; j< _collisionObjList.Count; j++)
                     {
                         //이거 2개 충돌했는지 확인후
-                        _collisionObjList[target];
-                        _collisionObjList[j];
+                        //_collisionObjList[target];
+                        //_collisionObjList[j];
                         //이런식으로 양쪽에 충돌했다고 알려주기.
                         _collisionObjList[target].OnCollision((BaseObject)_collisionObjList[j]);
                         _collisionObjList[j].OnCollision((BaseObject)_collisionObjList[target]);
