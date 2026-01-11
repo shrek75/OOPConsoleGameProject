@@ -63,6 +63,8 @@ namespace OOP_Game_Shrek
             int sizeY = arr.GetLength(0);
             int sizeX = arr.GetLength(1);
 
+            //이거 범위를 객체중심기준으로 바꿔야겠다. 걸쳐있어도 보이게
+            // 다음에 바꾸자..
             if (x < 0 || x + sizeX > conX  || y < 0 || y + sizeY > conY)
                 return;
 
