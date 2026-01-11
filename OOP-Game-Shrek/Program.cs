@@ -10,6 +10,7 @@ namespace OOP_Game_Shrek
     {
         static void Main(string[] args)
         {
+            Log._enable = true;       
             while (SceneManager.Run());
         }
     }
