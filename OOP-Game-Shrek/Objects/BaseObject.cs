@@ -9,7 +9,7 @@ namespace OOP_Game_Shrek
 {
     internal abstract class BaseObject
     {
-        //기존위치
+        //객체의 정중앙 위치
         protected Pos _pos;
 
         //방향
@@ -18,10 +18,7 @@ namespace OOP_Game_Shrek
         //속력
         protected double _speed;
 
-        //크기
-        //protected double _radius;
-
-        //객체의 외형
+        //객체의 외형과 크기
         protected Sprite _sprite;
 
         //Render를 위한 위치반환

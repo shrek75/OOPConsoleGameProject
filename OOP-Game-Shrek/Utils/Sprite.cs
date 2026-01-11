@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Game_Shrek.Utils
 {
+    // 객체의 외형과 크기를 나타내는 클래스
     internal class Sprite
     {
         private char[,] _data;
@@ -20,12 +21,16 @@ namespace OOP_Game_Shrek.Utils
             _sizeY = spriteArr.GetLength(0);
         }
 
-        //객체의 좌표가 모양의 왼쪽상단을 표현한다고 정함.
+        
         public void Render(Pos pos)
         {
-            //콘솔의 위치좌표는 정수밖에없으니까 반올림할게.
-            int x = (int)Math.Round(pos._x, MidpointRounding.AwayFromZero); 
-            int y = (int)Math.Round(pos._y, MidpointRounding.AwayFromZero);
+            // 객체의 좌표가 정중앙을 표현하고있으니 왼쪽상단으로 맞추는 작업.
+            double firstX = pos._x - _sizeX / 2 + 0.5;
+            double firstY = pos._y - _sizeY / 2 + 0.5;
+
+            // 그 다음 콘솔의 위치좌표는 정수밖에없으니까 반올림할게.
+            int x = (int)Math.Round(firstX, MidpointRounding.AwayFromZero); 
+            int y = (int)Math.Round(firstY, MidpointRounding.AwayFromZero);
 
             ConsoleManager.Draw(x,y, _data);
         }
