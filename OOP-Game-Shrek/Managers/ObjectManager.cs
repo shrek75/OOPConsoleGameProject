@@ -101,10 +101,10 @@ namespace OOP_Game_Shrek
 
         private static bool CollisionCheck(BaseObject obj1, BaseObject obj2)
         {
-            double obj1X = obj1._pos._x;
-            double obj1Y = obj1._pos._y;
-            double obj2X = obj2._pos._x;
-            double obj2Y = obj2._pos._y;
+            double obj1X = obj1.Pos._x;
+            double obj1Y = obj1.Pos._y;
+            double obj2X = obj2.Pos._x;
+            double obj2Y = obj2.Pos._y;
 
             //두 도형의 중심 사이의 거리
             double distanceX = Math.Abs(obj2X - obj1X); 
