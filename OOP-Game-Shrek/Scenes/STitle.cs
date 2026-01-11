@@ -27,6 +27,7 @@ namespace OOP_Game_Shrek.Scenes
 
         public STitle()
         {
+            ObjectManager.AddObject(new DummyObject()); //그냥 L키 받는 오브젝트추가
             ObjectManager.AddObject(new MPoop(new Pos(11, 4)));
             ObjectManager.AddObject(new OTestObj(new Pos(4, 4)));
             ObjectManager.AddPlayer(new Player(new Pos(15, 15)));

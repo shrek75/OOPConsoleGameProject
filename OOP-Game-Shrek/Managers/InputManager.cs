@@ -30,6 +30,8 @@ namespace OOP_Game_Shrek
                 _keys.Add(ConsoleKey.LeftArrow);
             if ((GetAsyncKeyState(VK.Right) & 0x8000) != 0)
                 _keys.Add(ConsoleKey.RightArrow);
+            if ((GetAsyncKeyState(VK.L) & 0x8000) != 0)
+                _keys.Add(ConsoleKey.L);
         }
 
         [DllImport("user32.dll")]
@@ -44,5 +46,7 @@ namespace OOP_Game_Shrek
 
         public const int Space = 0x20;
         public const int Esc = 0x1B;
+
+        public const int L = 0x4C;
     }
 }

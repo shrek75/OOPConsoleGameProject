@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\BaseObject.cs" />
+    <Compile Include="Objects\DummyObject.cs" />
     <Compile Include="Objects\Monster.cs" />
     <Compile Include="Objects\MPoop.cs" />
     <Compile Include="Objects\OTestObj.cs" />

@@ -10,7 +10,7 @@ namespace OOP_Game_Shrek
     {
         static void Main(string[] args)
         {
-            Log._debugMode = true;
+            Log.DebugMode = true;
             TimeManager.FuncBySec = Log.Print;
             while (SceneManager.Run());
         }
