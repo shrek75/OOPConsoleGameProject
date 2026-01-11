@@ -19,6 +19,14 @@ namespace OOP_Game_Shrek
         }
 
 
+        // from에서 to까지 거리 반환
+        public static double GetDistance(Pos from, Pos to)
+        {
+            double dx = to._x - from._x;
+            double dy = to._y - from._y;
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
+
         // 크기 1짜리 방향벡터 반환.  인텔리센스 왤캐 좋아;;
         public static Pos GetDirVector(Pos from, Pos to)
         {
@@ -31,6 +39,7 @@ namespace OOP_Game_Shrek
             }
             return new Pos { _x = dx / length, _y = dy / length };
         }
+
 
 
         // 더하기 연산자 오버로딩
