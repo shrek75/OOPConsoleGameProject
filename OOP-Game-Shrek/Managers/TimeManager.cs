@@ -40,7 +40,7 @@ namespace OOP_Game_Shrek
 
         static TimeManager()
         {
-            _nextSecond = DateTime.Now.AddSeconds(1);
+            _nextSecond = DateTime.Now;
             _timePerFrame = Stopwatch.StartNew();
         }
 
@@ -50,7 +50,7 @@ namespace OOP_Game_Shrek
             _lastUpdateTick = 0;
             _deltaTick = 0;
             _deltaTime = 0;
-            _nextSecond = DateTime.Now.AddSeconds(1);
+            _nextSecond = DateTime.Now;
             _timePerFrame = Stopwatch.StartNew();
         }
 
