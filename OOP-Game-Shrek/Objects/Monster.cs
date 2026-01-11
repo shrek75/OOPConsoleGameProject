@@ -13,19 +13,18 @@ namespace OOP_Game_Shrek.Objects
         //몸박뎀
         int _bodyDamage = 5;
 
-        public override void Render()
-        {
-            _sprite.Render(RenderPos);
-        }
 
+        //Monster클래스 기본 Update. 
         public override void Update()
         {
-            
-
-            Log.Push(Log.LogType.INFO, "Monster.Update()");
             Move();
-
         }
+
+        public override void Render()
+        {
+            base.Render();
+        }
+        
 
         public void OnCollision(BaseObject otherObj)
         {

@@ -18,7 +18,7 @@ namespace OOP_Game_Shrek.Objects
                     { '#', ' ', ' ', '#' },
                     { '#', ' ', ' ', '#' },
                     { '#', '#', '#', '#' }});
-            Log.Push(Log.LogType.INFO,$"{this.GetHashCode()} 생성완료!");
+           // Log.Push(Log.LogType.INFO,$"{this.GetHashCode()} 생성완료!");
         }
 
         public override void Update()
@@ -27,21 +27,21 @@ namespace OOP_Game_Shrek.Objects
             {
                 base._speed = 1.0;
                 base._dir = new Pos(1, 0);
-                Log.Push(Log.LogType.WARN,$"{this.GetHashCode()} 오른쪽 움직임!");
+              //  Log.Push(Log.LogType.WARN,$"{this.GetHashCode()} 오른쪽 움직임!");
 
             }
             if (_pos._y == 5)
             {
                 base._speed = 1.0;
                 base._dir = new Pos(-1, 0);
-                Log.Push(Log.LogType.ERROR,$"{this.GetHashCode()} 왼쪽 움직임!");
+              //  Log.Push(Log.LogType.ERROR,$"{this.GetHashCode()} 왼쪽 움직임!");
             }
 
-            _pos = _pos + (_dir * _speed) * TimeManager.LogicTime;
+            Move();
         }
         public override void Render()
         {
-            _sprite.Render(RenderPos);
+            base.Render();
         }
 
         public void OnCollision(BaseObject otherObj)

@@ -32,7 +32,12 @@ namespace OOP_Game_Shrek
         }
 
         public abstract void Update();
-        public abstract void Render();
+
+        //BaseObject 기본 Render
+        public virtual void Render()
+        {
+            _sprite?.Render(RenderPos);
+        }
 
         
     }

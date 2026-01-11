@@ -24,7 +24,9 @@ namespace OOP_Game_Shrek.Objects
             _dir = new Pos(1, 0);
    
         }
-
         
+        
+
+
     }
 }
