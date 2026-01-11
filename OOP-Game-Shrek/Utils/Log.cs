@@ -69,7 +69,7 @@ namespace OOP_Game_Shrek
         private static void PrintLog()
         {
             Console.SetCursorPosition(consolePosX, consolePosY);
-            Console.Write($"<{DateTime.Now.ToString("HH:MM:ss")}>  TPS: {TimeManager.nowTPS,3} FPS: {TimeManager.nowFPS,3}");
+            Console.Write($"< Debug[ ON] >  TPS: {TimeManager.nowTPS,3} FPS: {TimeManager.nowFPS,3}");
 
             int count = _full ? _buffer.Length : _index;
             //한번 꽉차면 어디부터 시작할지 
@@ -104,7 +104,7 @@ namespace OOP_Game_Shrek
         public static void PrintShrek()
         {
             Console.SetCursorPosition(consolePosX, consolePosY);
-            Console.Write($"<{DateTime.Now.ToString("HH:MM:ss")}>  TPS: {TimeManager.nowTPS,3} FPS: {TimeManager.nowFPS,3}");
+            Console.Write($"< Debug[OFF] >  TPS: {TimeManager.nowTPS,3} FPS: {TimeManager.nowFPS,3}");
             /**
             *       _____ __              __  
             *      / ___// /_  ________  / /__
