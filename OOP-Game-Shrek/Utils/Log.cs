@@ -19,10 +19,10 @@ namespace OOP_Game_Shrek
         }
 
         static readonly (LogType,string)[] _buffer; 
-        const int SIZE = 20;                  // 링버퍼사이즈 겸 Y출력범위
+        const int SIZE = 19;                  // 링버퍼사이즈 겸 Y출력범위
         static int _index = 0;
         static bool _fill = false;            // 삭제없음ㅋ 그냥 한번다차면 true
-        public static bool _enable = false;   // 로그 찍기 켜기/끄기
+        public static bool _debugMode = false;   // 로그 찍기 켜기/끄기
         static readonly int consolePosX = 42; // 로그출력할 X위치
         static readonly int consolePosY = 0;  // 로그출력할 Y위치 시작점
 
@@ -42,17 +42,29 @@ namespace OOP_Game_Shrek
             if (_index == 0)
                 _fill = true;
 
-            if(_enable)PrintLog();
         }
 
-        // 순서대로 출력
+        //TimeManager에게 넘겨 1초마다 호출되게함
+        public static void Print()
+        {
+            if (_debugMode) PrintLog();
+            else PrintShrek();
+        }
+
+
+        //로그 Print
         private static void PrintLog()
         {
+            Console.SetCursorPosition(consolePosX, consolePosY);
+            Console.Write($"<{DateTime.Now.ToString("HH:MM:ss")}>  TPS: {TimeManager.nowTPS,3} FPS: {TimeManager.nowFPS,3}");
+
             int count = _fill ? _buffer.Length : _index;
             //한번 꽉차면 어디부터 시작할지
             int start = _fill ? _index : 0;
 
-            for (int i = 0; i < count; i++)
+            //링버퍼 돌면서 로그찍기
+            //안지워줘서 원래있던 문자열 남아잇는데 귀찮다 내일하자..
+            for (int i = 1; i <= count; i++)
             {
                 DateTime now = DateTime.Now;
                 Console.SetCursorPosition(consolePosX, consolePosY + i);
@@ -71,6 +83,16 @@ namespace OOP_Game_Shrek
 
         public static void PrintShrek()
         {
+            Console.SetCursorPosition(consolePosX, consolePosY);
+            Console.Write($"<{DateTime.Now.ToString("HH:MM:ss")}>  TPS: {TimeManager.nowTPS,3} FPS: {TimeManager.nowFPS,3}");
+            /**
+            *       _____ __              __  
+            *      / ___// /_  ________  / /__
+            *      \__ \/ __ \/ ___/ _ \/ //_/
+            *     ___/ / / / / /  /  __/ ,<   
+            *    /____/_/ /_/_/   \___/_/|_|  
+            *                                 
+            */
             Console.SetCursorPosition(consolePosX, consolePosY + 1);
             Console.Write(@"   _____ __              __  ");
             Console.SetCursorPosition(consolePosX, consolePosY + 2);
@@ -82,14 +104,6 @@ namespace OOP_Game_Shrek
             Console.SetCursorPosition(consolePosX, consolePosY + 5);
             Console.Write(@"/____/_/ /_/_/   \___/_/|_|  ");
 
-            /**
-            *       _____ __              __  
-            *      / ___// /_  ________  / /__
-            *      \__ \/ __ \/ ___/ _ \/ //_/
-            *     ___/ / / / / /  /  __/ ,<   
-            *    /____/_/ /_/_/   \___/_/|_|  
-            *                                 
-            */
         }
     }
 }

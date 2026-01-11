@@ -16,10 +16,15 @@ namespace OOP_Game_Shrek
         public static double LogicTime { get { return _logicTime; } }
 
         private static long _gameLogicCount = 0; // 현재 Update 횟수
-        private static long _lastGameLogicCount = 0; // 1초전 Update 횟수
-                 
+        private static long _lastGameLogicCount = 0; // 1초전 전체 Update 횟수
+        private static int _nowTps;                  //지난 1초간 tps
+        public static int nowTPS {  get { return _nowTps; } } 
+
         private static long _FrameCount = 0; // 렌더링된 전체 프레임 수
-        private static long _lastFrameCount = 0; // 1초전 프레임 수
+        private static long _lastFrameCount = 0; // 1초전 전체 프레임 수
+        private static int _nowFps;              //지난 1초간 fps
+        public static int nowFPS { get { return _nowFps; } }
+
 
         static int _updateTimes = 0; //한 루프에서 Update를 너무 많이 호출하는 걸 방지하기 위한 변수
 
@@ -100,9 +105,23 @@ namespace OOP_Game_Shrek
             DateTime now = DateTime.Now;
             if (now >= _nextSecond)
             {
+                //지난 1초간 로직횟수 기록
+                _nowTps = (int)(_gameLogicCount - _lastGameLogicCount);
+                _lastGameLogicCount = _gameLogicCount;
+                //지난 1초간 렌더횟수 기록
+                _nowFps = (int)(_FrameCount - _lastFrameCount);
+                _lastFrameCount = _FrameCount;
+
                 _nextSecond = _nextSecond.AddSeconds(1);
+                
+                //다른 클래스를 위한 Delegate돌려주기
                 FuncBySec?.Invoke();
             }
         }
+
+        public static void AddLogicCount() => _gameLogicCount++;
+        public static void AddFrameCount() => _FrameCount++;
+
+        
     }
 }

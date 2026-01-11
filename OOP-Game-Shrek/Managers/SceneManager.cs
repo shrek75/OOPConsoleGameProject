@@ -41,9 +41,13 @@ namespace OOP_Game_Shrek
             InputManager.Poll();
 
             while (TimeManager.IsUpdateTime())
+            {
                 ObjectManager.Update();
+                TimeManager.AddLogicCount();
+            }
 
             ObjectManager.Render();
+            TimeManager.AddFrameCount();
 
             return true;
         }
