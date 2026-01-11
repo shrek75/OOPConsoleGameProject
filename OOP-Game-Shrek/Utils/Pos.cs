@@ -40,6 +40,11 @@ namespace OOP_Game_Shrek
             return new Pos { _x = dx / length, _y = dy / length };
         }
 
+        public static Pos Up => new Pos(0, -1);
+        public static Pos Down => new Pos(0, 1);
+        public static Pos Right => new Pos(1, 0);
+        public static Pos Left => new Pos(-1, 0);
+
 
 
         // 더하기 연산자 오버로딩
