@@ -109,17 +109,15 @@ namespace OOP_Game_Shrek
             int sizeY = arr.GetLength(0);
             int sizeX = arr.GetLength(1);
 
-            //이거 범위를 객체중심기준으로 바꿔야겠다. 걸쳐있어도 보이게
-            // 다음에 바꾸자..
-            if (x < 0 || x + sizeX * 2 > conX  || y < 0 || y + sizeY > conY)
-                return;
 
-            for (int i = 0; i < sizeY; i++)
-                for (int j = 0; j < sizeX; j++)
+            for (int dy = 0; dy < sizeY; dy++)
+                for (int dx = 0; dx < sizeX; dx++)
                 {
-                    _buffer[y + i, x + j * 2] = (arr[i, j], ConsoleColor.White);
+                    //경계에있는친구도 그려줌.
+                    if (y + dy < 0 || y + dy > conY - 1 || x + dx * 2 < 0 || x + dx * 2 + 1 > conX - 1) continue;
+                    _buffer[y + dy, x + dx * 2] = (arr[dy, dx], ConsoleColor.White);
                     //X+1칸으로 복사해서 그려줌!!!!!!!!!!!!!
-                    _buffer[y + i, x + j * 2 + 1] = (arr[i, j], ConsoleColor.White);
+                    _buffer[y + dy, x + dx * 2 + 1] = (arr[dy, dx], ConsoleColor.White);
                 }
         }
 
@@ -134,17 +132,15 @@ namespace OOP_Game_Shrek
             int sizeY = arr.GetLength(0);
             int sizeX = arr.GetLength(1);
 
-            //이거 범위를 객체중심기준으로 바꿔야겠다. 걸쳐있어도 보이게
-            // 다음에 바꾸자..
-            if (x < 0 || x + sizeX * 2 > conX || y < 0 || y + sizeY > conY)
-                return;
 
             //string도 똑같이 넣고 출력만 잘해주는걸로
-            for (int i = 0; i < sizeY; i++)
-                for (int j = 0; j < sizeX; j++)
+            for (int dY = 0; dY < sizeY; dY++)
+                for (int dX = 0; dX < sizeX; dX++)
                 {
-                    _buffer[y + i, x + j * 2] = (arr[i, j][0], ConsoleColor.White);
-                    _buffer[y + i, x + j * 2 + 1] = (arr[i, j][1], ConsoleColor.White);
+                    //경계에있는친구도 그려줌.
+                    if (y + dY < 0 || y + dY > conY - 1 || x + dX * 2 < 0 || x + dX * 2 + 1 > conX - 1) continue;
+                    _buffer[y + dY, x + dX * 2] = (arr[dY, dX][0], ConsoleColor.White);
+                    _buffer[y + dY, x + dX * 2 + 1] = (arr[dY, dX][1], ConsoleColor.White);
 
                 }
         }
