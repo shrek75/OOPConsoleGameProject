@@ -32,19 +32,31 @@ namespace OOP_Game_Shrek.Utils
             strMode = true;
         }
 
-
+        //객체의 외형을 그림
         public void Render(Pos pos)
         {
-            // 객체의 좌표가 정중앙을 표현하고있으니 왼쪽상단으로 맞추는 작업.
-            double firstX = pos._x - _sizeX / 2 + 0.5;
-            double firstY = pos._y - _sizeY / 2 + 0.5;
-
-            // 그 다음 콘솔의 위치좌표는 정수밖에없으니까 반올림할게.
-            int x = (int)Math.Round(firstX, MidpointRounding.AwayFromZero); 
-            int y = (int)Math.Round(firstY, MidpointRounding.AwayFromZero);
+            Pos p = RetLeftTopPos(pos);
+            int x = (int)p._x;
+            int y = (int)p._y;
 
             if (strMode) ConsoleManager.Draw(x, y, _strData);
             else ConsoleManager.Draw(x, y, _charData);
+        }
+
+        //객체의 크기가 클때, 화면상 객체의 왼쪽윗부분을 반환.
+        public Pos RetLeftTopPos(Pos pos)
+        {
+            Pos retPos;
+
+            // 객체의 좌표가 정중앙을 표현하고있으니 왼쪽상단으로 맞추는 작업.
+            double firstX = pos._x - _sizeX / 2.0 + 0.5;
+            double firstY = pos._y - _sizeY / 2.0 + 0.5;
+
+            // 그 다음 콘솔의 위치좌표는 정수밖에없으니까 반올림해서 보내줄게.
+            retPos._x = (int)Math.Round(firstX, MidpointRounding.AwayFromZero);
+            retPos._y = (int)Math.Round(firstY, MidpointRounding.AwayFromZero);
+
+            return retPos;
         }
     }
 }

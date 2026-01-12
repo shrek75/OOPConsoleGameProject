@@ -43,10 +43,8 @@ namespace OOP_Game_Shrek.Objects
                 if (calculationSkill1 <= 0)
                 {
                     //기본스킬 생성
-                    Pos skillPos = _pos + _lastLookDir * 2;
+                    Pos skillPos = _pos + _lastLookDir * 3;
                     ObjectManager.AddObject(new SSwordBaseAttack(skillPos));
-                    //skillPos = _pos + _lastLookDir * 4;
-                    //ObjectManager.AddObject(new SSwordBaseAttack(skillPos));
 
                     calculationSkill1 = coolDownSkill1;
                 }

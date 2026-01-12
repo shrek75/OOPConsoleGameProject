@@ -108,8 +108,9 @@ namespace OOP_Game_Shrek
                     break;
             }
 
-            //임시로 1,1
-            ConsoleManager.Draw(1, 1, '▬', color);
+            //체력바 떠있는 위치 정하기
+            Pos hPPos = _sprite.RetLeftTopPos(RenderPos) + new Pos(-1, -1);
+            ConsoleManager.Draw((int)hPPos._x, (int)hPPos._y, '▬', color);
         }
 
         

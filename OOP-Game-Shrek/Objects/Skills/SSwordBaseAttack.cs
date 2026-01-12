@@ -13,7 +13,7 @@ namespace OOP_Game_Shrek.Objects.Skills
         public SSwordBaseAttack(Pos pos) : base(pos)
         {
             _sprite = new Utils.Sprite(
-                new string[,] { { "💥" } }
+                new string[,] { { "💥", "💥" }, { "💥", "💥" } }
                 );
             _damage = 30;
             _maxTargetNums = 4;
