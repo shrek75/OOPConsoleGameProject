@@ -38,7 +38,6 @@ namespace OOP_Game_Shrek.Utils
             Pos p = RetLeftTopPos(pos);
             int x = (int)p._x;
             int y = (int)p._y;
-            Log.Push(Log.LogType._INFO, $"renderPos x{x} y{y}");
             if (strMode) ConsoleManager.Draw(x, y, _strData);
             else ConsoleManager.Draw(x, y, _charData);
         }

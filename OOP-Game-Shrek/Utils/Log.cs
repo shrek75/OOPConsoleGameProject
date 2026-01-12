@@ -22,7 +22,7 @@ namespace OOP_Game_Shrek
         const int SIZE = 23;                  // 링버퍼사이즈 겸 Y출력범위
         static int _index = 0;
         static bool _full = false;            // 삭제없음ㅋ 그냥 한번다차면 true
-        static readonly int consolePosX = 82; // 로그출력할 X위치
+        static readonly int consolePosX = 84; // 로그출력할 X위치
         const int consoleMaxX = 140;          // 로그출력 X위치 끝지점    
         static readonly int consolePosY = 0;  // 로그출력할 Y위치 시작점
         private static bool _debugMode = false;   // 로그 찍기 켜기/끄기
@@ -95,8 +95,11 @@ namespace OOP_Game_Shrek
                 if (tmp.Length > strSize) tmp = tmp.Substring(0, strSize);
                 else tmp = tmp.PadRight(strSize);
                 Console.Write(tmp);
-
+                
             }
+            PrintHardCodingTeduri();
+
+
 
         }
 
@@ -123,6 +126,13 @@ namespace OOP_Game_Shrek
             Console.Write(@" ___/ / / / / /  /  __/ ,<   ");
             Console.SetCursorPosition(consolePosX, consolePosY + 5);
             Console.Write(@"/____/_/ /_/_/   \___/_/|_|  ");
+            Console.SetCursorPosition(consolePosX, consolePosY + 7);
+            Console.Write("이동 : 방향키    공격 : 스페이스바");
+            Console.SetCursorPosition(consolePosX, consolePosY + 9);
+            Console.Write("[L] 을 눌러 디버그모드 ON/OFF 전환");
+
+
+            PrintHardCodingTeduri();
 
         }
 
@@ -134,6 +144,18 @@ namespace OOP_Game_Shrek
                 Console.SetCursorPosition(consolePosX, consolePosY + i);
                 Console.WriteLine(empty);
             }
+        }
+
+        private static void PrintHardCodingTeduri()
+        {
+            //아 귀찮아 하드코딩간다
+            for (int i = 0; i < 24; i++)
+            {
+                Console.SetCursorPosition(80, i);
+                Console.Write("🕳️");
+            }
+            Console.SetCursorPosition(0, 24);
+            Console.Write("🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️🕳️");
         }
     }
 }

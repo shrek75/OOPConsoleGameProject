@@ -31,6 +31,7 @@ namespace OOP_Game_Shrek.Objects
         public override void Render()
         {
             base.Render();
+            DrawHP();
         }
 
         public override void Update()
@@ -63,6 +64,7 @@ namespace OOP_Game_Shrek.Objects
             Dir = newDir;
             Move();
 
+            Log.Push(Log.LogType._INFO, $"x{base.Pos._x} y{base.Pos._y}");
             
         }
 

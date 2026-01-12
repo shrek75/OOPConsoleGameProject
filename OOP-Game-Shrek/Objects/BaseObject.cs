@@ -76,6 +76,11 @@ namespace OOP_Game_Shrek
         public virtual void Move()
         {
             _pos = _pos + (Dir * _speed) * TimeManager.LogicTime;
+            if (_pos._x < 0) _pos._x = 0;
+            if (_pos._x > ConsoleManager.conX/2 -1) _pos._x = ConsoleManager.conX/2 -1;
+            if (_pos._y < 0) _pos._y = 0;
+            if (_pos._y > ConsoleManager.conY - 1) _pos._y = ConsoleManager.conY - 1;
+
         }
 
         public virtual void Damage(double attackPower)
@@ -112,7 +117,6 @@ namespace OOP_Game_Shrek
 
             //체력바 떠있는 위치 정하기
             Pos hPPos = _sprite.RetLeftTopPos(RenderPos) + new Pos(0, -1);
-            Log.Push(Log.LogType._INFO, $"hpbar x{hPPos._x} y{hPPos._y}");
             ConsoleManager.Draw((int)hPPos._x, (int)hPPos._y, '▬', color);
         }
 

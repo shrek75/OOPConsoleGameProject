@@ -10,8 +10,8 @@ namespace OOP_Game_Shrek
     // 콘솔 출력을 담당하는 클래스
     internal static class ConsoleManager
     {
-        const int conX = 80; // console창 X축 사이즈
-        const int conY = 24; // console창 Y축 사이즈
+        public const int conX = 80; // console창 X축 사이즈
+        public const int conY = 24; // console창 Y축 사이즈
         const int LogSize = 60; //로그출력용 추가 X축 사이즈
 
         static (char c,ConsoleColor color)[,] _buffer = new (char, ConsoleColor)[conY, conX]; // console창에 출력할 내용을 담는 버퍼
@@ -19,10 +19,11 @@ namespace OOP_Game_Shrek
         // 생성자에서 초기화 작업
         static ConsoleManager()
         {
+
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.CursorVisible = false;
-            Console.SetWindowSize(conX+ LogSize, conY);
-            Console.SetBufferSize(conX+ LogSize, conY);
+            Console.SetWindowSize(conX + LogSize, conY + 1);
+            Console.SetBufferSize(conX + LogSize, conY + 1);
             Console.Clear();
         }
 
