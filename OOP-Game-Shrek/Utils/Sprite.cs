@@ -27,7 +27,7 @@ namespace OOP_Game_Shrek.Utils
         public Sprite(string[,] spriteArr)
         {
             _strData = spriteArr;
-            _sizeX = spriteArr.GetLength(1) * 2;
+            _sizeX = spriteArr.GetLength(1);
             _sizeY = spriteArr.GetLength(0);
             strMode = true;
         }

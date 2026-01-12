@@ -27,6 +27,10 @@ namespace OOP_Game_Shrek
         }
 
         //버퍼의 내용 출력
+        //아니 콘솔출력 기본이 한글자를 가로의 2배가 세로가 되기때문에 
+        // 시각적 만족감을 위해서 글자마다 X축을 2배로 출력해야겠음.
+        // 이모지는 그냥 출력하면되는거고 기본문자를 빈칸을하나 더출력하냐/ 하나더복사하냐인데 하나더복사로 가보자
+
         public static void Flip()
         {
             Console.SetCursorPosition(0, 0);
@@ -35,6 +39,7 @@ namespace OOP_Game_Shrek
                 for (int j = 0; j < conX; j++)
                 {
                     char c = _buffer[i, j].c;
+
                     //32비트짜리 문자Low인지?
                     if (char.IsLowSurrogate(c))
                         continue;
@@ -51,6 +56,7 @@ namespace OOP_Game_Shrek
                             continue;
                         }
                     }
+                    // 일반 16비트문자일경우
                     // char는 색기능추가했기때문에 색깔에맞춰 출력.
                     if (_buffer[i, j].color != ConsoleColor.White)
                     {
@@ -80,15 +86,24 @@ namespace OOP_Game_Shrek
         //버퍼에 그리기
         public static void Draw(int x, int y, char c, ConsoleColor color = ConsoleColor.White)
         {
-            if (x < 0 || x > conX - 1 || y < 0 || y > conY - 1)
+            //x는 출력할때 2배
+            x = x * 2;
+
+            if (x < 0 || x + 1 > conX - 1 || y < 0 || y > conY - 1)
                 return;
 
             _buffer[y,x] = (c,color);
+            //X+1칸으로 복사해서 그려줌!!!!!!!!!!!!!
+            _buffer[y, x+1] = (c, color);
+
         }
 
         //버퍼에 그리기2
         public static void Draw(int x, int y, char[,] arr)
         {
+            //x는 출력할때 2배
+            x = x * 2;
+
             if (arr == null) return;
 
             int sizeY = arr.GetLength(0);
@@ -96,41 +111,41 @@ namespace OOP_Game_Shrek
 
             //이거 범위를 객체중심기준으로 바꿔야겠다. 걸쳐있어도 보이게
             // 다음에 바꾸자..
-            if (x < 0 || x + sizeX > conX  || y < 0 || y + sizeY > conY)
+            if (x < 0 || x + sizeX * 2 > conX  || y < 0 || y + sizeY > conY)
                 return;
 
-            for (int i = 0; i < sizeY; i++)
-                for (int j = 0; j < sizeX; j++)
-                    _buffer[y + i, x + j] = (arr[i, j], ConsoleColor.White);
-        }
-
-        //버퍼에 그리기3 (arr은 이모지용)
-        public static void Draw(int x, int y, string[,] arr)
-        {
-            if (arr == null) return;
-
-            int sizeY = arr.GetLength(0);
-            int sizeX = arr.GetLength(1) * 2; //이모지는 X축 2칸
-
-            //이거 범위를 객체중심기준으로 바꿔야겠다. 걸쳐있어도 보이게
-            // 다음에 바꾸자..
-            if (x < 0 || x + sizeX > conX || y < 0 || y + sizeY > conY)
-                return;
-
-            //string도 char처럼 넣고 출력만 잘해주는걸로
             for (int i = 0; i < sizeY; i++)
                 for (int j = 0; j < sizeX; j++)
                 {
-                    // 16비트문자 , 32비트문자 둘다고려해야함 
-                    string s = arr[i, j / 2];
-                    char c;
-                    // Length가 2면 뒷자리도 그대로 넣어줌
-                    if (s != null && j % 2 < s.Length)
-                        c = s[j % 2];
-                    // Length가 1이면 뒷자리는 빈칸으로
-                    else c = ' ';
+                    _buffer[y + i, x + j * 2] = (arr[i, j], ConsoleColor.White);
+                    //X+1칸으로 복사해서 그려줌!!!!!!!!!!!!!
+                    _buffer[y + i, x + j * 2 + 1] = (arr[i, j], ConsoleColor.White);
+                }
+        }
 
-                    _buffer[y + i, x + j] = (c, ConsoleColor.White);
+        //버퍼에 그리기3 (arr은 이모지용) (arr은 일단 이모지만들어온다는가정)
+        public static void Draw(int x, int y, string[,] arr)
+        {
+            //x는 출력할때 2배
+            x = x * 2;
+
+            if (arr == null) return;
+
+            int sizeY = arr.GetLength(0);
+            int sizeX = arr.GetLength(1);
+
+            //이거 범위를 객체중심기준으로 바꿔야겠다. 걸쳐있어도 보이게
+            // 다음에 바꾸자..
+            if (x < 0 || x + sizeX * 2 > conX || y < 0 || y + sizeY > conY)
+                return;
+
+            //string도 똑같이 넣고 출력만 잘해주는걸로
+            for (int i = 0; i < sizeY; i++)
+                for (int j = 0; j < sizeX; j++)
+                {
+                    _buffer[y + i, x + j * 2] = (arr[i, j][0], ConsoleColor.White);
+                    _buffer[y + i, x + j * 2 + 1] = (arr[i, j][1], ConsoleColor.White);
+
                 }
         }
 
