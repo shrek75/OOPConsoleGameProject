@@ -54,6 +54,7 @@ namespace OOP_Game_Shrek.Objects
                 _isDeletable = false;
                 ObjectManager.DeleteObjectsIfChangeScene();
                 _isDeletable = true;
+                ObjectManager.Player.MovePos(new Pos(3, 20));
                 _stageList[_currentStage].initFunc.Invoke();
 
 
