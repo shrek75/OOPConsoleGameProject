@@ -11,7 +11,7 @@ namespace OOP_Game_Shrek.Objects.Skills
     {
         //데미지랑 타이머도 있어야하는데
         protected double _damage = 20;
-        protected int _lifeTime = (int)(2 * TimeManager.GAME_TPS); 
+        protected int _lifeTime = (int)(1 * TimeManager.GAME_TPS); 
 
         public BaseSkill(Pos pos)
         {

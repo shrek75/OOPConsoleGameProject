@@ -12,6 +12,9 @@ namespace OOP_Game_Shrek.Objects
 {
     internal class Player : BaseObject, ICollision
     {
+        private const int coolDownSkill1 = (int)(1 * TimeManager.GAME_TPS);
+        private int calculationSkill1 = 0;
+
         public Player(Pos pos)
         {
             HP = 100;
@@ -30,11 +33,21 @@ namespace OOP_Game_Shrek.Objects
 
         public override void Update()
         {
+            calculationSkill1--;
+
             //기본스킬
             if (InputManager.Keys.Contains(ConsoleKey.Spacebar))
             {
-                Pos skillPos = _pos + _lastLookDir * 2;
-                ObjectManager.AddObject(new SSwordBaseAttack(skillPos));
+                if (calculationSkill1 <= 0)
+                {
+                    //기본스킬 생성
+                    Pos skillPos = _pos + _lastLookDir * 2;
+                    ObjectManager.AddObject(new SSwordBaseAttack(skillPos));
+                    skillPos = _pos + _lastLookDir * 4;
+                    ObjectManager.AddObject(new SSwordBaseAttack(skillPos));
+
+                    calculationSkill1 = coolDownSkill1;
+                }
             }
 
             // 입력한 방향키에따라 player 방향 바꿔주기
