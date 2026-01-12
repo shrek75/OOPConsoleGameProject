@@ -14,7 +14,7 @@ namespace OOP_Game_Shrek
         const int conY = 20; // console창 Y축 사이즈
         const int LogSize = 60; //로그출력용 추가 X축 사이즈
 
-        static char[,] _buffer = new char[conY, conX]; // console창에 출력할 내용을 담는 버퍼
+        static (char c,ConsoleColor color)[,] _buffer = new (char, ConsoleColor)[conY, conX]; // console창에 출력할 내용을 담는 버퍼
 
         // 생성자에서 초기화 작업
         static ConsoleManager()
@@ -34,7 +34,7 @@ namespace OOP_Game_Shrek
             {
                 for (int j = 0; j < conX; j++)
                 {
-                    char c = _buffer[i, j];
+                    char c = _buffer[i, j].c;
                     //32비트짜리 문자Low인지?
                     if (char.IsLowSurrogate(c))
                         continue;
@@ -42,7 +42,7 @@ namespace OOP_Game_Shrek
                     //32비트문자 High인지?
                     if (char.IsHighSurrogate(c) && j + 1 < conX)
                     {
-                        char next = _buffer[i, j+1];
+                        char next = _buffer[i, j+1].c;
 
                         if (char.IsLowSurrogate(next))
                         {
@@ -51,8 +51,15 @@ namespace OOP_Game_Shrek
                             continue;
                         }
                     }
-                    // char는 그냥 출력
-                    Console.Write(c);
+                    // char는 색기능추가했기때문에 색깔에맞춰 출력.
+                    if (_buffer[i, j].color != ConsoleColor.White)
+                    {
+                        Console.ForegroundColor = _buffer[i, j].color;
+                        Console.Write(c);
+                        //여기코드들 프레임 너무떨어져서 조건문 달았음.
+                        Console.ResetColor();
+                    }
+                    else Console.Write(c);
                 }
 
                 Console.WriteLine();
@@ -67,16 +74,16 @@ namespace OOP_Game_Shrek
         {
             for (int i = 0; i < conY; i++)
                 for (int j = 0; j < conX; j++)
-                    _buffer[i, j] = ' ';
+                    _buffer[i, j] = (' ',ConsoleColor.White);
         }
 
         //버퍼에 그리기
-        public static void Draw(int x, int y, char c)
+        public static void Draw(int x, int y, char c, ConsoleColor color)
         {
             if (x < 0 || x > conX - 1 || y < 0 || y > conY - 1)
                 return;
 
-            _buffer[y,x] = c;
+            _buffer[y,x] = (c,color);
         }
 
         //버퍼에 그리기2
@@ -94,7 +101,7 @@ namespace OOP_Game_Shrek
 
             for (int i = 0; i < sizeY; i++)
                 for (int j = 0; j < sizeX; j++)
-                    _buffer[y + i, x + j] = arr[i, j];
+                    _buffer[y + i, x + j] = (arr[i, j], ConsoleColor.White);
         }
 
         //버퍼에 그리기3 (arr은 이모지용)
@@ -123,7 +130,7 @@ namespace OOP_Game_Shrek
                     // Length가 1이면 뒷자리는 빈칸으로
                     else c = ' ';
 
-                    _buffer[y + i, x + j] = c;
+                    _buffer[y + i, x + j] = (c, ConsoleColor.White);
                 }
         }
 
