@@ -21,7 +21,7 @@ namespace OOP_Game_Shrek.Objects
             _speed = 2;
 
             // 방향
-            _dir = new Pos(0, 0);
+            Dir = new Pos(0, 0);
 
             // 몸박뎀쿨
             _bodyDamageCoolDown = (int)(3 * TimeManager.GAME_TPS);
@@ -34,7 +34,7 @@ namespace OOP_Game_Shrek.Objects
         {
             
             //Player와의 거리가 10이하가 되면 추적상태 ON 
-            if(_trackPlayer) _dir = ObjectManager.GetDirVectorToPlayer(this.Pos);
+            if(_trackPlayer) Dir = ObjectManager.GetDirVectorToPlayer(this.Pos);
             else if(ObjectManager.GetDistanceToPlayer(this.Pos) < 10)
             {
                 base._trackPlayer = true;
@@ -46,7 +46,7 @@ namespace OOP_Game_Shrek.Objects
             {
                 if (--_bodyDamageCalcuation == 0)
                 {
-                    Log.Push(Log.LogType._WARN, $"쿨 ON");
+                    //Log.Push(Log.LogType._WARN, $"쿨 ON");
                     _bodyDamageUsable = true;
                     _bodyDamageCalcuation = _bodyDamageCoolDown;
                 }
@@ -66,7 +66,7 @@ namespace OOP_Game_Shrek.Objects
                     if (otherObj.IsDead)
                     {
                         ObjectManager.DeletePlayer(p);
-                        Log.Push(Log.LogType._WARN, $"작동하나?");
+                        //Log.Push(Log.LogType._WARN, $"작동하나?");
 
                     }
 

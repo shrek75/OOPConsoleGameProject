@@ -13,8 +13,22 @@ namespace OOP_Game_Shrek
         protected Pos _pos = new Pos(10,10);
         public Pos Pos { get { return _pos; } }
 
-        //방향
-        protected Pos _dir = new Pos(0,0);
+        //현재 진행 방향
+        private Pos _dir = new Pos(0, 0);
+        protected Pos Dir
+        {
+            get { return _dir; } 
+            set
+            {
+                _dir = value;
+                //멈췄을때 마지막으로 진행했던 방향을 기억
+                if(_dir._x !=0 || _dir._y != 0)
+                    _lastLookDir = _dir;
+            }
+        }
+
+        //마지막으로 바라봤던 방향
+        protected Pos _lastLookDir = new Pos(0,0);
 
         //속력
         protected double _speed = 0;
@@ -22,15 +36,19 @@ namespace OOP_Game_Shrek
         //객체의 외형과 크기
         public Sprite _sprite;
 
+        //무적여부
+        protected bool _isInvincible = false;
+
         //체력
-        private double _hp;
+        private double _hp = 1000;
         public double HP
         {
             get { return _hp; }
             set
             {
-                _hp = value;
-                if(_hp <= 0)
+                //무적이면 HP건들이지마
+                if(!_isInvincible) _hp = value;
+                if (_hp <= 0)
                 {
                     _IsDead = true;
                 }
@@ -50,12 +68,12 @@ namespace OOP_Game_Shrek
         }
 
         //Render를 위한 위치반환
-        protected Pos RenderPos { get { return _pos + (_dir * _speed) * TimeManager.DeltaTime; } }
+        protected Pos RenderPos { get { return _pos + (Dir * _speed) * TimeManager.DeltaTime; } }
 
         //Update에서 오브젝트위치 갱신용 Move
         public virtual void Move()
         {
-            _pos = _pos + (_dir * _speed) * TimeManager.LogicTime;
+            _pos = _pos + (Dir * _speed) * TimeManager.LogicTime;
         }
 
         public virtual void Damage(double attackPower)

@@ -22,6 +22,7 @@ namespace OOP_Game_Shrek
         {
             //이전 Key들 지워줌
             _keys.Clear();
+
             if ((GetAsyncKeyState(VK.Up) & 0x8000) != 0)
                 _keys.Add(ConsoleKey.UpArrow);
             if ((GetAsyncKeyState(VK.Down) & 0x8000) != 0)
@@ -30,8 +31,14 @@ namespace OOP_Game_Shrek
                 _keys.Add(ConsoleKey.LeftArrow);
             if ((GetAsyncKeyState(VK.Right) & 0x8000) != 0)
                 _keys.Add(ConsoleKey.RightArrow);
+
             if ((GetAsyncKeyState(VK.L) & 0x8000) != 0)
                 _keys.Add(ConsoleKey.L);
+
+            if ((GetAsyncKeyState(VK.Space) & 0x8000) != 0)
+                _keys.Add(ConsoleKey.Spacebar);
+            if ((GetAsyncKeyState(VK.Esc) & 0x8000) != 0)
+                _keys.Add(ConsoleKey.Escape);
         }
 
         [DllImport("user32.dll")]
