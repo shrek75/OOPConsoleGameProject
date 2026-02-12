@@ -55,7 +55,7 @@
 - ICollision : 충돌처리  
 - Sprite : 객체의 외형 표현
 
-
+### 게임 핵심 루프
 ```csharp
 // SceneManager.Run()
 public static bool Run()
@@ -78,13 +78,13 @@ public static bool Run()
     return true;
 }
 ```
-위의 코드는 내가 만든 게임의 루프이다.   
+위의 코드는 게임의 루프이다.   
 간략하게 설명을 추가하자면,
 게임 내의 **모든 Object**는 **ObjectManager**에 의해 관리된다.  
 **Scene**의 역할은 오직 Object의 **배치**이다. 나머지는 Object들이 알아서 한다.  
 **SceneManager**는 다른Manager들과 소통(?)하며 현재 실행될 Scene을 관리한다. 프로그램의 전체적인 관리자 느낌이다.    
 **TimeManager**는 Object들의 로직 과 렌더링에 필요한 시간을 관리한다.  
-*InputManager는 입력된 키 관리를 위해 만들었으나 별로 필요없는 듯하다. GetAsyncKeyState()쓰면 알아서 다 되더라.*
+*InputManager는 입력된 키 관리를 위해 만들었으나 별로 필요없었다. GetAsyncKeyState()를 활용했다.*
 
 
 
